@@ -17,21 +17,20 @@
       <h1>Get More Email Signups</h1>
       <h3>Create a simple the use speech bubble to turn website visitors into app users. Lorem ipsum set dolor. Lorem ipsum set dolor. Lorem ipsum set dolor.</h3>
     </div>
-    <div class="col fieldscontainer">
+    <div class="col fieldscontainer" ng-class="mat.fadeOut">
       <div class="fields">
-        <form>
-          <div ng-hide="mailchimp.result === 'success'">
-            <input type="text" name="fname" ng-model="mailchimp.FNAME" placeholder="First name" required>
-            <input type="text" name="lname" ng-model="mailchimp.LNAME" placeholder="Last name" required>
-            <input type="text" name="email" ng-model="mailchimp.EMAIL" placeholder="Email address" required>
-            <!-- <button ng-disabled="MailchimpSubscriptionForm.$invalid" ng-click="mat.addSubscription(mailchimp)">Join</button> -->
-            <button class="button" ng-disabled="MailchimpSubscriptionForm.$invalid" ng-click="mat.addSubscription(mailchimp)">Join Email List</button>
+        <form name="SubscribeForm">
+          <div ng-hide="mailChimp.result === 'success'">
+            <input type="text" name="fname" ng-model="mailChimp.FNAME" placeholder="First name" required>
+            <input type="text" name="lname" ng-model="mailChimp.LNAME" placeholder="Last name" required>
+            <input type="text" name="email" ng-model="mailChimp.EMAIL" placeholder="Email address" required>
+            <button class="button" ng-disabled="SubscribeForm.$invalid" ng-click="mat.addSubscription(mailChimp)">Join Email List</button>
           </div>
-          <span class="nothanks" ng-click="mat.noThanksCookie()">
+          <span class="nothanks" ng-click="mat.noThanksCookie()" ng-hide="mailChimp.result === 'success'">
             no thanks, i'd rather not
           </span>
-          <div class="message" ng-show="mailchimp.result === 'error'">
-            <span ng-bind-html="mailchimp.message"></span>
+          <div class="message" ng-show="mailChimp.result === 'error'">
+            <span ng-bind-html="mailChimp.message"></span>
           </div>
         </form>
       </div>

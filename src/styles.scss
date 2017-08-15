@@ -125,4 +125,43 @@ textarea:focus, input:focus, button{
     }
   }
 }
-    
+
+/* To-Do - conditionally apply this class when cookie is set with ngClass */
+.hidden {
+  animation: fadeout 1s;
+  -webkit-animation: fadeout 1s;
+  /* Chrome, Safari, Opera */
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fadeout {
+  from {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  to {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+  }
+}
+
+
+/* Standard syntax */
+@keyframes fadeout {
+  from {
+    max-height: 999px;
+    opacity: 1;
+  }
+
+  to {
+    display: none;
+    max-height: 0;
+    opacity: 0;
+  }
+}

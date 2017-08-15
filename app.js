@@ -42,7 +42,7 @@
         method: 'jsonp'
       }
     };
-    self.MailChimpSubscription = '';
+    self.mailChimpSubscription = '';
 
     /**
      * You set the param based on your MailChimp naked form embed -
@@ -71,42 +71,41 @@
     /**
      * @name WelcomeMatCtrl#initialize
      * @description Initializes the controller
-     * @param {object} mailchimp Mailchimp object from the frontend
+     * @param {object} mailChimp Mailchimp object from the frontend
      */
-    function addSubscription(mailchimp) {
-      console.log('mailchimp - ', mailchimp);
+    function addSubscription(mailChimp) {
       // Create a resource for interacting with the MailChimp API
       self.url = 'https://' + self.params.username + '.' + self.params.dc + '.list-manage.com/subscribe/post-json';
 
-      var fields = Object.keys(mailchimp);
+      var fields = Object.keys(mailChimp);
 
       for(var i = 0; i < fields.length; i++) {
-        self.params[fields[i]] = mailchimp[fields[i]];
+        self.params[fields[i]] = mailChimp[fields[i]];
       }
 
       self.params.c = 'JSON_CALLBACK';
-      self.MailChimpSubscription = $resource(self.url, self.params, self.actions);
+      self.mailChimpSubscription = $resource(self.url, self.params, self.actions);
 
       // Send subscriber data to MailChimp
-      self.MailChimpSubscription.save(
+      self.mailChimpSubscription.save(
         function (response) {
           //successfully sent data
-          mailchimp.message = '';
+          mailChimp.message = '';
 
           // Store the result from MailChimp
-          mailchimp.result = response.result;
+          mailChimp.result = response.result;
 
           if (response.result === 'success') {
             // Mailchimp returned a success
-            mailchimp.message = response.msg;
+            mailChimp.message = response.msg;
             //call the method below to store a cookie to not display the welcome mat
             yesPleaseCookie();
           } else if (response.result === 'error') {
             // Mailchimp returned an error
-            mailchimp.message = response.msg;
+            mailChimp.message = response.msg;
           } else {
             // Mailchimp returned an unhandled case
-            mailchimp.message = 'Woah! The result was not a success or an error - ' + response.msg;
+            mailChimp.message = 'Woah! The result was not a success or an error - ' + response.msg;
           }
         },
         // Error handling - yes, this is pretty ugly. We could create our own Exception for Mailchimp
@@ -159,6 +158,7 @@
      */
     function yesPleaseCookie() {
       console.log('YES COOKIE!!!!');
+      var expiryDate = new Date();
       //set the cookie to expire 1 month form today.
       expiryDate.setMonth(expiryDate.getMonth() + 12);
       $cookies.put('myFavorite', 'oatmeal');
