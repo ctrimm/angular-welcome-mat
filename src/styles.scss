@@ -1,3 +1,4 @@
+//import in some mixins and variables
 @import 'mixins';
 @import 'variables';
 
@@ -43,7 +44,7 @@ textarea:focus, input:focus, button{
   -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
 
-  min-height: 1500px;
+  min-height: 500px;
 
   .col {
     flex: 1;
@@ -95,17 +96,33 @@ textarea:focus, input:focus, button{
           text-align: center;
           text-decoration: none;
         }
+
+        .message {
+            border: solid 2px $light-blue;
+            margin: 5px;
+            padding: 10px;
+        }
       }
     }
   }
 }
 
 .flexgridthirds {
+  align-self: center;
   display: flex;
   justify-content: space-between;
+  min-height: 750px;
 
   .col {
+    text-align: center;
     width: 32%;
+
+    h1 {
+      color: $dark-blue;
+    }
+    h3 {
+      color: $light-blue;
+    }
   }
 }
     

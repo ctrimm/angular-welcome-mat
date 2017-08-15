@@ -35,6 +35,7 @@
    */
   function WelcomeMatCtrl($cookies, $resource, $timeout, $window) {
     var self = this;
+
     // Variables
     self.actions = {
       'save': {
@@ -42,8 +43,14 @@
       }
     };
     self.MailChimpSubscription = '';
-    //You set the param based on your MailChimp naked form embed -
-    //<username>.<dc>.list-manage.com/subscribe/post?u=<u>&amp;id=<id>
+
+    /**
+     * You set the param based on your MailChimp naked form embed -
+     * <username>.<dc>.list-manage.com/subscribe/post?u=<u>&amp;id=<id>
+     *
+     * You can get your embed URL here - 
+     * https://<dc>.admin.mailchimp.com/lists/integration/embeddedcode?id=<list_id>
+     */
     self.params = {
       c: 'JSON_CALLBACK',
       dc: 'us3',
@@ -57,20 +64,17 @@
     // Methods
     self.addSubscription = addSubscription;
     self.noThanksCookie = noThanksCookie;
-    self.yesPleaseCookie = yesPleaseCookie;
     self.scrollToTop = scrollToTop;
 
     initialize();
 
-    function initialize() {
-      $cookies.myCookie = 'your first cookie';
-      //get the initial cookie
-      if ($cookies.get('hideWithCoach')) {
-        self.showHideWelcomeMat = !self.showHideWelcomeMat;
-      }
-    }
-
+    /**
+     * @name WelcomeMatCtrl#initialize
+     * @description Initializes the controller
+     * @param {object} mailchimp Mailchimp object from the frontend
+     */
     function addSubscription(mailchimp) {
+      console.log('mailchimp - ', mailchimp);
       // Create a resource for interacting with the MailChimp API
       self.url = 'https://' + self.params.username + '.' + self.params.dc + '.list-manage.com/subscribe/post-json';
 
@@ -96,7 +100,7 @@
             // Mailchimp returned a success
             mailchimp.message = response.msg;
             //call the method below to store a cookie to not display the welcome mat
-            self.yesPleaseCookie();
+            yesPleaseCookie();
           } else if (response.result === 'error') {
             // Mailchimp returned an error
             mailchimp.message = response.msg;
@@ -112,31 +116,55 @@
       );
     }
 
+    /**
+     * @name WelcomeMatCtrl#initialize
+     * @description Initializes the controller
+     */
+    function initialize() {
+      $cookies.myCookie = 'your first cookie';
+      //get the initial cookie
+      if ($cookies.get('hideWelcomeMat')) {
+        self.showHideWelcomeMat = !self.showHideWelcomeMat;
+      }
+    }
+
+    /**
+     * @name WelcomeMatCtrl#noThanksCookie
+     * @description Sets the hideWelcomeMat cookie to be true - 1 month from now & scrolls to the top of the DOM
+     */
     function noThanksCookie() {
-      console.log('nothtnak');
+      console.log('noThanksCookie');
       var expiryDate = new Date();
       //set the cookie to expire 1 month form today.
       expiryDate.setMonth(expiryDate.getMonth() + 1);
-      $cookies.put('hideWithCoach', 'true', {'expires': expiryDate.toGMTString()});
+      $cookies.put('hideWelcomeMat', 'true', {'expires': expiryDate.toGMTString()});
       console.log($cookies.getAll());
       self.showHideWelcomeMat = true;
       self.scrollToTop();
     }
 
+    /**
+     * @name WelcomeMatCtrl#scrollToTop
+     * @description Sets the hideWelcomeMat cookie to be true - 1 year from today & scrolls to the top of the DOM
+     */
+    function scrollToTop() {
+      $timeout(function() {
+          $window.scrollTo(0,0);
+      }, 2000);
+    }
+
+    /**
+     * Private function.
+     * Sets the hideWelcomeMat cookie to be true - 1 year from today & scrolls to the top of the DOM
+     */
     function yesPleaseCookie() {
       console.log('YES COOKIE!!!!');
       //set the cookie to expire 1 month form today.
       expiryDate.setMonth(expiryDate.getMonth() + 12);
       $cookies.put('myFavorite', 'oatmeal');
-      $cookies.put('hideWithCoach', 'false', {'expires': expiryDate.toGMTString()});
+      $cookies.put('hideWelcomeMat', 'true', {'expires': expiryDate.toGMTString()});
       self.showHideWelcomeMat = true;
       self.scrollToTop();
-    }
-
-    function scrollToTop() {
-      $timeout(function() {
-          $window.scrollTo(0,0);
-      }, 2000);
     }
   }
 

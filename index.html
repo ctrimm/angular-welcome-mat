@@ -30,11 +30,30 @@
           <span class="nothanks" ng-click="mat.noThanksCookie()">
             no thanks, i'd rather not
           </span>
-          <div class="message">
+          <div class="message" ng-show="mailchimp.result === 'error'">
             <span ng-bind-html="mailchimp.message"></span>
           </div>
         </form>
       </div>
+    </div>
+  </div>
+  <div class="flexgridthirds">
+    <div class="col">
+      <h1>THIS IS SOME BASIC FLEXGRID COLUMNS</h1>
+      <h3>Lorem ipsum set dolor. Lorem ipsum set dolor. Lorem ipsum set dolor.</h3>
+    </div>
+    <div class="col">
+      <h1>THIS IS SOME BASIC FLEXGRID COLUMNS</h1>
+      <h3>Lorem ipsum set dolor. Lorem ipsum set dolor. Lorem ipsum set dolor.</h3>
+    </div>
+    <div class="col">
+      <h1>THIS IS SOME BASIC FLEXGRID COLUMNS</h1>
+      <h3>Lorem ipsum set dolor. Lorem ipsum set dolor. Lorem ipsum set dolor.</h3>
+    </div>
+  </div>
+  <div class="flexgrid">
+    <div class="col">
+      <h1>This is just some content to show the transition between closing the welcome mat</h1>
     </div>
   </div>
 </body>

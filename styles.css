@@ -37,7 +37,7 @@ textarea:focus, input:focus, button {
   display: flex;
   -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
-  min-height: 1500px; }
+  min-height: 500px; }
   .flexgrid .col {
     flex: 1;
     padding: 125px; }
@@ -76,9 +76,20 @@ textarea:focus, input:focus, button {
           padding: 15px 32px;
           text-align: center;
           text-decoration: none; }
+        .flexgrid .col.fieldscontainer .fields .message {
+          border: solid 2px #01BAEF;
+          margin: 5px;
+          padding: 10px; }
 
 .flexgridthirds {
+  align-self: center;
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  min-height: 750px; }
   .flexgridthirds .col {
+    text-align: center;
     width: 32%; }
+    .flexgridthirds .col h1 {
+      color: #0B4F6C; }
+    .flexgridthirds .col h3 {
+      color: #01BAEF; }
