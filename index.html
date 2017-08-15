@@ -11,16 +11,15 @@
   <title>A Sample Welcome Mat App</title>
   <link rel="stylesheet" href="./styles.css">
 </head>
-<body>
-
-  <div class="flexgrid">
+<body ng-controller="WelcomeMatCtrl as mat">
+  <div class="flexgrid" ng-show="mat.showHideWelcomeMat">
     <div class="col cta">
       <h1>Get More Email Signups</h1>
       <h3>Create a simple the use speech bubble to turn website visitors into app users. Lorem ipsum set dolor. Lorem ipsum set dolor. Lorem ipsum set dolor.</h3>
     </div>
     <div class="col fieldscontainer">
       <div class="fields">
-        <form ng-controller="WelcomeMatCtrl as mat">
+        <form>
           <div ng-hide="mailchimp.result === 'success'">
             <input type="text" name="fname" ng-model="mailchimp.FNAME" placeholder="First name" required>
             <input type="text" name="lname" ng-model="mailchimp.LNAME" placeholder="Last name" required>
@@ -28,7 +27,7 @@
             <!-- <button ng-disabled="MailchimpSubscriptionForm.$invalid" ng-click="mat.addSubscription(mailchimp)">Join</button> -->
             <button class="button" ng-disabled="MailchimpSubscriptionForm.$invalid" ng-click="mat.addSubscription(mailchimp)">Join Email List</button>
           </div>
-          <span class="nothanks">
+          <span class="nothanks" ng-click="mat.noThanksCookie()">
             no thanks, i'd rather not
           </span>
           <div class="message">

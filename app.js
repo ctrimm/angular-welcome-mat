@@ -30,8 +30,10 @@
    * @description Controller for the welcome mat
    * @requires $cookies
    * @requires $resource
+   * @requires $timeout
+   * @requires $window
    */
-  function WelcomeMatCtrl($cookies, $resource) {
+  function WelcomeMatCtrl($cookies, $resource, $timeout, $window) {
     var self = this;
     // Variables
     self.actions = {
@@ -49,10 +51,24 @@
       u: '7a6246e531811217e30a51cab',
       username: 'journeyunknown'
     };
+    self.showHideWelcomeMat = true;
     self.url = '';
 
     // Methods
     self.addSubscription = addSubscription;
+    self.noThanksCookie = noThanksCookie;
+    self.yesPleaseCookie = yesPleaseCookie;
+    self.scrollToTop = scrollToTop;
+
+    initialize();
+
+    function initialize() {
+      $cookies.myCookie = 'your first cookie';
+      //get the initial cookie
+      if ($cookies.get('hideWithCoach')) {
+        self.showHideWelcomeMat = !self.showHideWelcomeMat;
+      }
+    }
 
     function addSubscription(mailchimp) {
       // Create a resource for interacting with the MailChimp API
@@ -79,6 +95,8 @@
           if (response.result === 'success') {
             // Mailchimp returned a success
             mailchimp.message = response.msg;
+            //call the method below to store a cookie to not display the welcome mat
+            self.yesPleaseCookie();
           } else if (response.result === 'error') {
             // Mailchimp returned an error
             mailchimp.message = response.msg;
@@ -92,6 +110,33 @@
           alert('MailChimp Error: ' + error);
         }
       );
+    }
+
+    function noThanksCookie() {
+      console.log('nothtnak');
+      var expiryDate = new Date();
+      //set the cookie to expire 1 month form today.
+      expiryDate.setMonth(expiryDate.getMonth() + 1);
+      $cookies.put('hideWithCoach', 'true', {'expires': expiryDate.toGMTString()});
+      console.log($cookies.getAll());
+      self.showHideWelcomeMat = true;
+      self.scrollToTop();
+    }
+
+    function yesPleaseCookie() {
+      console.log('YES COOKIE!!!!');
+      //set the cookie to expire 1 month form today.
+      expiryDate.setMonth(expiryDate.getMonth() + 12);
+      $cookies.put('myFavorite', 'oatmeal');
+      $cookies.put('hideWithCoach', 'false', {'expires': expiryDate.toGMTString()});
+      self.showHideWelcomeMat = true;
+      self.scrollToTop();
+    }
+
+    function scrollToTop() {
+      $timeout(function() {
+          $window.scrollTo(0,0);
+      }, 2000);
     }
   }
 

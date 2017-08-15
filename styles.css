@@ -1,9 +1,9 @@
 @media (max-width: 600px) {
-  .flex-grid {
+  .flexgrid {
     display: block; }
-    .flex-grid .col.cta {
+    .flexgrid .col.cta {
       padding: 25px 0px 0px 25px; }
-      .flex-grid .col.cta h1 {
+      .flexgrid .col.cta h1 {
         font-size: 30px; } }
 
 body {
@@ -36,7 +36,8 @@ textarea:focus, input:focus, button {
   display: -webkit-flex;
   display: flex;
   -webkit-flex-flow: row wrap;
-  flex-flow: row wrap; }
+  flex-flow: row wrap;
+  min-height: 1500px; }
   .flexgrid .col {
     flex: 1;
     padding: 125px; }
@@ -48,7 +49,6 @@ textarea:focus, input:focus, button {
         font-weight: 700;
         margin: 0; }
     .flexgrid .col.fieldscontainer {
-      align-self: center;
       padding-left: 25px;
       text-align: center; }
       .flexgrid .col.fieldscontainer .fields {
