@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="welcomemat">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+  <script src="./node_modules/angular-resource/angular-resource.min.js"></script>
+  <script src="./node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+  <script src="./src/lib/welcomeMatCtrl.js"></script>
+  <title>A Sample Welcome Mat App</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <form ng-controller="WelcomeMatCtrl as mat">
+    <div ng-hide="mailchimp.result === 'success'">
+      <input type="text" name="fname" ng-model="mailchimp.FNAME" placeholder="First name">
+      <input type="text" name="lname" ng-model="mailchimp.LNAME" placeholder="Last name">
+      <input type="email" name="email" ng-model="mailchimp.EMAIL" placeholder="Email address" required>
+      <button ng-disabled="MailchimpSubscriptionForm.$invalid" ng-click="mat.addSubscription(mailchimp)">Join</button>
+    </div>
+    <div>
+      <span ng-bind-html="mailchimp.message"></span>
+    </div>
+  </form>
+</body>
+</html>

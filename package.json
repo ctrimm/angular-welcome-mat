@@ -1,0 +1,30 @@
+{
+  "name": "angular-welcome-mat",
+  "version": "1.0.0",
+  "description": "AngularJS Welcome mat integrated with Mailchimp",
+  "main": "app.js",
+  "scripts": {
+    "test": "karma start --single-run --browsers PhantomJS"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ctrimm/angular-welcome-mat.git"
+  },
+  "keywords": [
+    "angularjs",
+    "angularjs",
+    "welcome",
+    "mat"
+  ],
+  "author": "Cory Trimm <cory.trimm@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ctrimm/angular-welcome-mat/issues"
+  },
+  "homepage": "https://github.com/ctrimm/angular-welcome-mat#readme",
+  "dependencies": {
+    "angular": "1.3.2",
+    "angular-resource": "1.3.2",
+    "angular-sanitize": "1.3.2"
+  }
+}
