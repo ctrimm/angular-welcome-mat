@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+  <script src="./node_modules/angular-cookies/angular-cookies.min.js"></script>
   <script src="./node_modules/angular-resource/angular-resource.min.js"></script>
   <script src="./node_modules/angular-sanitize/angular-sanitize.min.js"></script>
   <script src="./app.js"></script>
@@ -11,20 +12,31 @@
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <div class="custom_callout">
-      <h1>Subscribe To Our Newsletter</h1>
-      <h3>Get Actionable Tips Every Week Direclty to Your Inbox.</h3>
-      <form ng-controller="WelcomeMatCtrl as mat">
-      <div ng-hide="mailchimp.result === 'success'">
-        <input type="text" name="fname" ng-model="mailchimp.FNAME" placeholder="First name">
-        <input type="text" name="lname" ng-model="mailchimp.LNAME" placeholder="Last name">
-        <input type="email" name="email" ng-model="mailchimp.EMAIL" placeholder="Email address" required>
-        <button ng-disabled="MailchimpSubscriptionForm.$invalid" ng-click="mat.addSubscription(mailchimp)">Join</button>
+
+  <div class="flexgrid">
+    <div class="col cta">
+      <h1>Get More Email Signups</h1>
+      <h3>Create a simple the use speech bubble to turn website visitors into app users. Lorem ipsum set dolor. Lorem ipsum set dolor. Lorem ipsum set dolor.</h3>
+    </div>
+    <div class="col fieldscontainer">
+      <div class="fields">
+        <form ng-controller="WelcomeMatCtrl as mat">
+          <div ng-hide="mailchimp.result === 'success'">
+            <input type="text" name="fname" ng-model="mailchimp.FNAME" placeholder="First name" required>
+            <input type="text" name="lname" ng-model="mailchimp.LNAME" placeholder="Last name" required>
+            <input type="text" name="email" ng-model="mailchimp.EMAIL" placeholder="Email address" required>
+            <!-- <button ng-disabled="MailchimpSubscriptionForm.$invalid" ng-click="mat.addSubscription(mailchimp)">Join</button> -->
+            <button class="button" ng-disabled="MailchimpSubscriptionForm.$invalid" ng-click="mat.addSubscription(mailchimp)">Join Email List</button>
+          </div>
+          <span class="nothanks">
+            no thanks, i'd rather not
+          </span>
+          <div class="message">
+            <span ng-bind-html="mailchimp.message"></span>
+          </div>
+        </form>
       </div>
-      <div class="message">
-        <span ng-bind-html="mailchimp.message"></span>
-      </div>
-    </form>
+    </div>
   </div>
 </body>
 </html>

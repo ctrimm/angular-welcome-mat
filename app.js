@@ -12,7 +12,7 @@
      * @module welcomemat
      * @name welcomemat
      */
-    angular.module('welcomemat', ['ng', 'ngResource', 'ngSanitize']);
+    angular.module('welcomemat', ['ng', 'ngCookies', 'ngResource', 'ngSanitize']);
 
 })();
 
@@ -28,9 +28,10 @@
    * @module welcomemat
    * @name WelcomeMatCtrl
    * @description Controller for the welcome mat
+   * @requires $cookies
    * @requires $resource
    */
-  function WelcomeMatCtrl($resource) {
+  function WelcomeMatCtrl($cookies, $resource) {
     var self = this;
     // Variables
     self.actions = {
@@ -60,14 +61,10 @@
       var fields = Object.keys(mailchimp);
 
       for(var i = 0; i < fields.length; i++) {
-        console.log('params[fields[i]] - ', self.params[fields[i]], 'mailchimp[fields[i]] - ', mailchimp[fields[i]]);
         self.params[fields[i]] = mailchimp[fields[i]];
       }
 
       self.params.c = 'JSON_CALLBACK';
-
-      console.log('params - ', self.params);
-      console.log('actions - ', self.actions);
       self.MailChimpSubscription = $resource(self.url, self.params, self.actions);
 
       // Send subscriber data to MailChimp

@@ -1,51 +1,109 @@
-html, body {
-  font: 100% Helvetica, sans-serif;
-  color: #FBFBFF;
+@import 'mixins';
+@import 'variables';
+
+//break into a column for small screens
+@media (max-width: 600px) {
+  .flex-grid {
+    display: block;
+    
+    .col.cta {
+      padding: 25px 0px 0px 25px;
+
+      h1 {
+        font-size: 30px;
+      }
+    }
+  }
+}
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
   margin: 0px;
 }
 
-.hidden { 
-  animation: fadeout 1s ;
-  -webkit-animation: fadeout 1s ;
-  animation-fill-mode: forwards;
-  -webkit-animation-fill-mode: forwards;
+input[type="text"], input[type="email"] {
+  display: block;
+  margin: 0;
+  width: 100%;
+  font-size: 18px;
+  @include appearance(none);
+  @include border-radius(none);
+  @include box-shadow(none);
 }
 
-@-webkit-keyframes fadeout {
-  from {
-    display:block;
-    visibility:visible;
-    opacity: 1;
-  }
-  to {
-    display:none;
-    visibility:hidden;
-    opacity:0;
-    height: 0;
+textarea:focus, input:focus, button{
+    outline: none;
+}
+
+.flexgrid {
+  background-color: $background-color;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+
+  .col {
+    flex: 1;
+    padding: 125px;
+
+    &.cta {
+      padding-right: 25px;
+      text-align: center;
+
+      h1 {
+        font-size: 82px;
+        font-weight: 700;
+        margin: 0;
+      }
+    }
+
+    &.fieldscontainer {
+      align-self: center;
+      padding-left: 25px;
+      text-align: center;
+
+      .fields {
+        background-color: $dark-blue;
+        padding: 50px;
+
+        h3 {
+          margin-top: 0;
+        }
+
+        input[type="text"] {
+          border: solid 5px $dark-blue;
+          padding: 10px 0px 10px 10px;
+          margin-top: 5px;
+          @include transition(0.3s);
+        }
+
+        input[type="text"]:focus, input[type="text"].focus {
+          border: solid 5px $light-blue;
+        }
+
+        .button {
+          background-color: $light-blue;
+          border: none;
+          color: $primary-color;
+          display: inline-block;
+          font-size: 16px;
+          margin-top: 25px;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+        }
+      }
+    }
   }
 }
 
-/* Standard syntax */
-@keyframes fadeout {
-  from {
-    max-height: 999px;
-    opacity: 1;
-  }
-  to {
-    display:none;
-    max-height: 0;
-    opacity:0;
+.flexgridthirds {
+  display: flex;
+  justify-content: space-between;
+
+  .col {
+    width: 32%;
   }
 }
-
-.custom_callout {
-  background-color: #20BF55;
-  color: #FBFBFF;
-  min-height: 100%;
-  min-width: 100%;
-
-  .message {
-    font-weight: 700;
-    text-decoration: underline wavy red;
-  }
-}
+    

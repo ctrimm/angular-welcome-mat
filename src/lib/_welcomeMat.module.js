@@ -12,6 +12,6 @@
      * @module welcomemat
      * @name welcomemat
      */
-    angular.module('welcomemat', ['ng', 'ngResource', 'ngSanitize']);
+    angular.module('welcomemat', ['ng', 'ngCookies', 'ngResource', 'ngSanitize']);
 
 })();
