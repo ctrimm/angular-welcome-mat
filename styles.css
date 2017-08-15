@@ -1,0 +1,40 @@
+html, body {
+  font: 100% Helvetica, sans-serif;
+  color: #FBFBFF;
+  margin: 0px; }
+
+.hidden {
+  animation: fadeout 1s;
+  -webkit-animation: fadeout 1s;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards; }
+
+@-webkit-keyframes fadeout {
+  from {
+    display: block;
+    visibility: visible;
+    opacity: 1; }
+  to {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    height: 0; } }
+
+/* Standard syntax */
+@keyframes fadeout {
+  from {
+    max-height: 999px;
+    opacity: 1; }
+  to {
+    display: none;
+    max-height: 0;
+    opacity: 0; } }
+
+.custom_callout {
+  background-color: #20BF55;
+  color: #FBFBFF;
+  min-height: 100%;
+  min-width: 100%; }
+  .custom_callout .message {
+    font-weight: 700;
+    text-decoration: underline wavy red; }

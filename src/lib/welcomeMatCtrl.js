@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('welcomemat', ['ng', 'ngResource', 'ngSanitize'])
+    .module('welcomemat')
     .controller('WelcomeMatCtrl', WelcomeMatCtrl);
 
   /**
@@ -20,8 +20,8 @@
         method: 'jsonp'
       }
     };
-    self.MailChimpSubscription;
-    //You set the param based on your MailChimp nake form embed - 
+    self.MailChimpSubscription = '';
+    //You set the param based on your MailChimp naked form embed -
     //<username>.<dc>.list-manage.com/subscribe/post?u=<u>&amp;id=<id>
     self.params = {
       c: 'JSON_CALLBACK',
@@ -30,7 +30,7 @@
       u: '7a6246e531811217e30a51cab',
       username: 'journeyunknown'
     };
-    self.url;
+    self.url = '';
 
     // Methods
     self.addSubscription = addSubscription;
@@ -78,6 +78,6 @@
         }
       );
     }
-  };
+  }
 
 })();
