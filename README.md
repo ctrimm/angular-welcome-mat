@@ -12,7 +12,7 @@ and then simply add `welcomemat` as a dependency in your app.
 ```
 
 # How to Config
-1. Log into your (Mailchimp Account)[https://login.mailchimp.com/]
+1. Log into your [Mailchimp Account](https://login.mailchimp.com/)
 2. Click on "Lists" in the top navigation bar
 3. Click on the list that you'd like to associate the form with
 4. Click "Signup Forms" on that page
